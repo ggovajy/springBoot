@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @Configuration 
-@MapperScan(basePackages = "com.example.demo.solomon.service.dao")
+@MapperScan(basePackages = "com.example.demo.*.service.dao")
 public class SolomonConfig {
 	
     @Value("${spring.datasource.driver-class-name}")
@@ -42,8 +42,7 @@ public class SolomonConfig {
 	@Bean 
 	public SqlSessionFactory sqlSessionFactory(DataSource datasource) throws Exception { 
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean(); 
-		sqlSessionFactory.setDataSource(datasource); 
-		sqlSessionFactory.setTypeAliasesPackage("com.example.demo.solomon.service.dao.solomonDAO"); 
+		sqlSessionFactory.setDataSource(datasource);
 		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/*.xml")); 
 		return sqlSessionFactory.getObject(); 
 		} 

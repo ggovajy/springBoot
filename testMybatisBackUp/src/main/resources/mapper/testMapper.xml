@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.test.service.dao.testDAO">
+
+
+	<select id="testTest" parameterType="java.util.Map" resultType="java.util.Map">
+	    
+	    SELECT PLAYER_ID AS ID, PLAYER_NAME AS NAME, TEAM_ID AS TEAM_ID FROM PLAYER
+	</select>
+	
+	<insert id="testUpdate" parameterType="Map">
+	    
+	    MERGE INTO PLAYER
+	    	  USING DUAL
+	    	  ON (PLAYER_ID   = #{retID})
+    	  	  WHEN MATCHED THEN
+    	  	  		UPDATE SET PLAYER_NAME 	= #{retNAME},
+	       	   				   TEAM_ID	   	= #{retTEAMID}
+ 	   		  WHEN NOT MATCHED THEN
+ 	   		  		INSERT (
+ 	   		  				PLAYER_ID, 
+ 	   		  				PLAYER_NAME,
+ 	   		  				TEAM_ID
+ 	   		  				)
+	   		  		VALUES (
+	   		  				#{retID},
+	   		  				#{retNAME},
+	   		  				#{retTEAMID}
+	   		  				)
+	    
+	    
+	</insert>
+	
+	<delete id="testDelete" parameterType="Map">
+	DELETE  
+	  FROM PLAYER
+	 WHERE PLAYER_ID   = #{retID}
+	</delete>
+</mapper>
