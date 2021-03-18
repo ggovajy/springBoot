@@ -23,7 +23,7 @@ import com.example.demo.solomon.service.solomonService;
 
 //@RestController
 @Controller
-@RequestMapping(value="/")
+@RequestMapping(value="/solomon/")
 public class solomonController {
 
 	@Autowired
